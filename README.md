@@ -29,9 +29,11 @@ git init && git add -A && git commit -m "Initial site" && git branch -M main && 
 3. Under "Custom domain" enter `foundlingllc.com` and save. The `CNAME` file in this repo keeps that setting across deploys.
 4. After DNS is in place (below), check "Enforce HTTPS". Certificate issuance can take up to a day after DNS propagates.
 
-## DNS records at GoDaddy
+## DNS records
 
-For the apex domain plus www on GitHub Pages, create these records in GoDaddy's DNS management for foundlingllc.com:
+A live DNS check on 2026-08-17 showed foundlingllc.com using Google Domains legacy nameservers (ns-cloud-a1 through a4.googledomains.com) with a Squarespace parking page on the apex and www. Google Domains accounts were migrated to Squarespace, so these records are most likely edited in Squarespace's domain dashboard, not GoDaddy. The required values are the same wherever the DNS is managed.
+
+For the apex domain plus www on GitHub Pages, replace the existing Squarespace A and CNAME records with:
 
 | Type  | Name | Value                     |
 |-------|------|---------------------------|
@@ -43,11 +45,11 @@ For the apex domain plus www on GitHub Pages, create these records in GoDaddy's 
 | AAAA  | @    | 2606:50c0:8001::153       |
 | AAAA  | @    | 2606:50c0:8002::153       |
 | AAAA  | @    | 2606:50c0:8003::153       |
-| CNAME | www  | `<your-github-username>.github.io` |
+| CNAME | www  | outcastchris.github.io    |
 
 Notes:
 
-- Delete GoDaddy's default parked A record on `@` and any default `www` forwarding first; they conflict.
+- Delete the existing parked A record on `@` (currently 198.49.23.145, Squarespace) and the existing `www` CNAME (currently ext-sq.squarespace.com) first; they conflict.
 - The AAAA records are optional but recommended (IPv6).
 - In the GitHub Pages settings, also add `www.foundlingllc.com` handling by leaving the custom domain as `foundlingllc.com`; GitHub redirects www to the apex automatically once the CNAME record exists.
 
