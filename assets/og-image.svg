@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#1c272c"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#17546e"/>
+  <text x="100" y="290" font-family="Georgia, 'Times New Roman', serif" font-size="72" letter-spacing="12" fill="#f4f6f7">FOUNDLING</text>
+  <text x="100" y="345" font-family="Georgia, 'Times New Roman', serif" font-size="30" letter-spacing="4" fill="#9cc4d6">LLC</text>
+  <rect x="100" y="380" width="140" height="3" fill="#17546e"/>
+  <rect x="100" y="388" width="140" height="3" fill="#17546e"/>
+  <text x="100" y="450" font-family="'Segoe UI', Arial, sans-serif" font-size="30" fill="#aebdc4">Employer of record, staffing, and payroll administration</text>
+  <text x="100" y="495" font-family="'Segoe UI', Arial, sans-serif" font-size="24" fill="#aebdc4">Granville, New York</text>
+</svg>

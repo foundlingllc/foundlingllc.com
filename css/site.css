@@ -1,0 +1,428 @@
+/* Foundling LLC - site.css
+   Token system: cool institutional palette, one signal color for links and rules only.
+   Note on this file: keep selectors flat (single class) to avoid specificity fights. */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+
+:root {
+  /* color */
+  --ink: #1c272c;            /* deep cool neutral: text, header, footer */
+  --ink-muted: #46565e;      /* secondary text on paper */
+  --paper: #f4f6f7;          /* cool paper surface */
+  --paper-2: #e9edef;        /* raised panel surface */
+  --line: #c6d0d5;           /* hairlines on paper */
+  --line-dark: #3a474e;      /* hairlines on ink */
+  --signal: #17546e;         /* links and rules only */
+  --paper-on-dark: #f4f6f7;
+  --muted-on-dark: #aebdc4;
+  --signal-on-dark: #9cc4d6;
+
+  /* type */
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --size-display: clamp(1.9rem, 1.2rem + 3vw, 3rem);
+  --size-h2: clamp(1.4rem, 1.15rem + 1.1vw, 1.85rem);
+  --size-h3: 1.15rem;
+  --size-body: 1rem;
+  --size-small: 0.875rem;
+  --leading-body: 1.6;
+  --leading-tight: 1.2;
+
+  /* space */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 1rem;
+  --s-4: 1.5rem;
+  --s-5: 2.5rem;
+  --s-6: clamp(3rem, 6vw, 5rem);
+
+  /* layout */
+  --container: 68rem;
+  --measure: 44rem;
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--s-3);
+}
+
+h1 {
+  font-size: var(--size-display);
+}
+
+h2 {
+  font-size: var(--size-h2);
+}
+
+h3 {
+  font-size: var(--size-h3);
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+p,
+ul,
+ol,
+dl {
+  margin: 0 0 var(--s-3);
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--signal);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* 3. Layout helpers -------------------------------------------------------- */
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--s-4);
+}
+
+.section {
+  padding-block: var(--s-6);
+}
+
+.section-alt {
+  background: var(--paper-2);
+}
+
+/* Signature element: the ledger rule under section headings. */
+.ledger {
+  margin: 0 0 var(--s-3);
+}
+
+.ledger::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  margin-top: var(--s-2);
+  border-top: 3px double var(--signal);
+}
+
+.grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: var(--s-4);
+}
+
+.panel-on-paper {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: var(--s-4);
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+.small {
+  font-size: var(--size-small);
+}
+
+.kicker {
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 var(--s-2);
+}
+
+/* 4. Header ---------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper-on-dark);
+  padding: var(--s-2) var(--s-3);
+  z-index: 10;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+  outline-color: var(--paper-on-dark);
+}
+
+.site-header {
+  background: var(--ink);
+  color: var(--paper-on-dark);
+  border-bottom: 3px solid var(--signal);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: var(--s-3);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand:focus-visible {
+  outline-color: var(--paper-on-dark);
+}
+
+.site-nav {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.site-nav a {
+  color: var(--paper-on-dark);
+  text-decoration: none;
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding-block: var(--s-1);
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.site-nav a:focus-visible {
+  outline-color: var(--paper-on-dark);
+}
+
+.site-nav a[aria-current="page"] {
+  border-bottom: 2px solid var(--signal-on-dark);
+}
+
+/* 5. Hero ------------------------------------------------------------------ */
+
+.hero {
+  padding-block: var(--s-6);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-lede {
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+}
+
+/* 6. Buttons --------------------------------------------------------------- */
+
+.button {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper-on-dark);
+  padding: 0.65rem 1.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--size-small);
+}
+
+.button:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.button-quiet {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  padding: 0.65rem 1.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--size-small);
+}
+
+.button-quiet:hover {
+  background: var(--ink);
+  color: var(--paper-on-dark);
+}
+
+/* 7. Content patterns ------------------------------------------------------ */
+
+.step-list {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  max-width: var(--measure);
+}
+
+.step-list li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 var(--s-4) 3rem;
+  border-left: 1px solid var(--line);
+  margin-left: 1rem;
+}
+
+.step-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: -1rem;
+  top: -0.15rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  border: 1px solid var(--signal);
+  color: var(--signal);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.step-list li:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.def-table {
+  max-width: var(--measure);
+}
+
+.def-table dt {
+  font-weight: 600;
+  margin-top: var(--s-3);
+}
+
+.def-table dd {
+  margin: var(--s-1) 0 0;
+  color: var(--ink-muted);
+}
+
+.faq h3 {
+  margin-top: var(--s-4);
+}
+
+.contact-block {
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  padding: var(--s-4);
+  max-width: var(--measure);
+}
+
+/* 8. Footer ---------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--ink);
+  color: var(--muted-on-dark);
+  margin-top: var(--s-6);
+  padding-block: var(--s-5);
+  font-size: var(--size-small);
+}
+
+.footer-grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.site-footer h2 {
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper-on-dark);
+  margin-bottom: var(--s-2);
+}
+
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer li {
+  margin-bottom: var(--s-1);
+}
+
+.site-footer a {
+  color: var(--signal-on-dark);
+}
+
+.site-footer a:focus-visible {
+  outline-color: var(--paper-on-dark);
+}
+
+.footer-legal {
+  border-top: 1px solid var(--line-dark);
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+}
+
+/* 9. Motion and small screens ---------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 25rem) {
+  .container {
+    padding-inline: var(--s-3);
+  }
+
+  .step-list li {
+    padding-left: 2.25rem;
+  }
+}
