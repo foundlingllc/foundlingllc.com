@@ -45,7 +45,7 @@ For the apex domain plus www on GitHub Pages, replace the existing Squarespace A
 | AAAA  | @    | 2606:50c0:8001::153       |
 | AAAA  | @    | 2606:50c0:8002::153       |
 | AAAA  | @    | 2606:50c0:8003::153       |
-| CNAME | www  | outcastchris.github.io    |
+| CNAME | www  | foundlingllc.github.io    |
 
 Notes:
 
